@@ -21,7 +21,7 @@ io.on('connection', function(socket) {
 
     socket.on("username change", function (data) {
         console.log(`Player with id ${socket.playerID} changed username to ${JSON.parse(data).username}`);
-
+        player[socket.playerID].setUsername(username);
     })
 
     console.log(socket.playerID + " connected.")

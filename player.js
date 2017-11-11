@@ -6,7 +6,7 @@ class Player {
     }
 
     //Username setter
-    set username(new_username) {
+    set setUsername(new_username) {
         this.username = new_username;
     }
 
