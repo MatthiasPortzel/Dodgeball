@@ -8,9 +8,15 @@ app.get('/', function(req, res){
 });
 
 http.listen(8080, function(){
-  console.log('listening on *:8080');
+    console.log('listening on *:8080');
 });
 
 io.on('connection', function(socket){
-  console.log('a user connected');
+    socket.playerID = Math.random().toFixed(8);
+
+    socket.on("username change", function (data) {
+        console.log(`Player with id ${socket.playerID} changed username to ${data}`);
+    })
+
+    console.log(socket.playerID + " connected.")
 });
