@@ -5,8 +5,9 @@
 </head>
 <body>
     <script>
-        // var socket = io();
-        // socket.emit("Test");
+        var username = prompt("What username do you want?");
+        var socket = io();
+        socket.emit(json.stringify({username:username}));
     </script>
 </body>
 </html>
