@@ -1,8 +1,11 @@
 class Projectile{
-  constructor(currentX, currentY, mouseX, mouseY){
+  constructor(currentX, currentY, angle){
     this.currentX = currentX;
     this.currentY = currentY;
-    this.angle = Math.atan2(mouseY - currentY, mouseX - currentX);
+    this.angle = angle;
+    if (typeof this.angle === "object") {
+        this.angle = Math.atan2(angle.y - currentY, angle.x - currentX);
+    }
   }
 
 
@@ -11,8 +14,8 @@ class Projectile{
     }
 
     update() {
-      this.currentX += (Math.sqrt(Math.pow(mouseY-currentY, 2) + Math.pow(mouseX-currentX, 2)) * Math.cos(this.angle)*5);
-      this.currentY += (Math.sqrt(Math.pow(mouseY-currentY, 2) + Math.pow(mouseX-currentX, 2)) * Math.sin(this.angle)*5;
+        this.currentX += Math.cos(this.angle)*10;
+        this.currentY += Math.sin(this.angle)*10;
     }
 
   isCollided() {
