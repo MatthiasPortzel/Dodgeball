@@ -2,7 +2,7 @@ class Projectile{
   constructor(currentX, currentY, mouseX, mouseY){
     this.currentX = currentX;
     this.currentY = currentY;
-    this.slope = (mouseY - currentY)/(mouseX - currentX); //slope is how fast y increases relative to x
+    this.angle = Math.atan2(mouseY - currentY, mouseX - currentX); //slope is how fast y increases relative to x
   }
 }
 
