@@ -1,6 +1,7 @@
-class player{
-  constructor(id) {
-      this.id = id;
+class Player{
+  constructor(playerData) {
+      this.id = playerData.id;
+      this.username = playerData.username;
   }
 
   //Username setter

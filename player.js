@@ -9,11 +9,11 @@ class Player {
         this.username = new_username;
     }
 
-    toJSON() {
-        return JSON.stringify({
+    toObj() {
+        return {
             id: this.id,
             username: this.username,
-        });
+        };
     }
 }
 
