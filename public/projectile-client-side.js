@@ -10,6 +10,7 @@ class Projectile{
 
 
     display() {
+        fill(0);
       ellipse(this.currentX, this.currentY, 10, 10);
     }
 

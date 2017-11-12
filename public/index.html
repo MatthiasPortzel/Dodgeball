@@ -60,16 +60,20 @@
                 //Player updating
                 var lastPos = player.y;
                 player.move();
-                for (var p of players) {
-                    if (!p) continue;
-                    p.display();
-                }
                 if (lastPos !== player.y) {
                     socket.emit("move", player.y.toString());
                 }
 
                 for (var p of projectiles) {
                     p.update();
+                }
+
+                //Displaying
+                for (var p of projectiles) {
+                    p.display();
+                }
+                for (var p of players) {
+                    if (!p) continue;
                     p.display();
                 }
             }else {
