@@ -32,12 +32,24 @@
         }
 
         function draw(){ //Put all the drawing stuff in here to avoid size conflicts.
-
+            background(255);
+            if (state === "loading") {
+                text("Loading" + ".".repeat(Math.floor(Math.random()*3)), 314, 314);
+            }else {
+                for (var p of players) {
+                    rect(p.x, p.y, 20, 20);
+                }
+            }
         }
         var username = prompt("What username do you want?"); //Maybe move the username stuff into a function later?
         var socket = io();
         var players, player;
+        var state = "loading";
         socket.emit("username input", JSON.stringify({username:username}));
+        socket.on('disconnect', (reason) => {
+            state = "disconnected";
+            socket.close();
+        });
         socket.addEventListener("user joined", function (playerData) {
             var newPlayer = JSON.parse(playerData);
             while (players.length < newPlayer.id) {
@@ -49,11 +61,11 @@
             data = JSON.parse(data);
             players = data.players.map(p => (p ? new Player(p) : null));
             player = new Player(data.player);
+            state = "game";
         });
         socket.addEventListener("player left", function (data) {
             players[JSON.parse(data).id] = null;
         });
-        socket.addEventListener("closing", function () { socket.close(); })
     </script>
 </body>
 </html>

@@ -44,9 +44,3 @@ io.on('connection', function(socket) {
 
     console.log(socket.playerID + " connected.")
 });
-
-process.on("SIGINT", function () {
-    io.emit("closing");
-    io.close();
-    process.exit();
-});
