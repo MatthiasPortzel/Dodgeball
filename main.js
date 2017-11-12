@@ -21,16 +21,24 @@ io.on('connection', function(socket) {
     players.push(new Player(players.length, socket));
     var player = players[socket.playerID];
 
-    socket.on("username change", function (data) {
-        data = JSON.parse(data);
+    socket.on("username input", function (data) {
+        username = JSON.parse(data).username;
+
+        //If they already have a username refuse to change it
         if (player.username !== undefined) return;
 
-        player.setUsername(data.username, socket);
-        socket.broadcast.emit("user joined", player.toJSON());
+        player.setUsername(username);
+        socket.broadcast.emit("user joined", JSON.stringify(player.toObj()));
+
+        socket.emit("init", JSON.stringify({
+            players: players.map(p => p ? p.toObj() : null),
+            player: player.toObj()
+        }));
     })
 
     socket.on('disconnect', function () {
-        players[socket.playerID] = null;
+        socket.broadcast.emit("player left", JSON.stringify(player.toObj()))
+        players[player.id] = null;
         console.log(socket.playerID + " disconnected.");
     })
 
