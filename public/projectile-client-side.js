@@ -11,8 +11,8 @@ class Projectile{
     }
 
     update() {
-      this.currentX += (Math.sqrt(Math.pow(mouseY-currentY, 2) - Math.pow(mouseX-currentX, 2)) * Math.cos(this.angle)*5);
-      this.currentY += (Math.sqrt(Math.pow(mouseY-currentY, 2) - Math.pow(mouseX-currentX, 2)) * Math.sin(this.angle)*5;
+      this.currentX += (Math.sqrt(Math.pow(mouseY-currentY, 2) + Math.pow(mouseX-currentX, 2)) * Math.cos(this.angle)*5);
+      this.currentY += (Math.sqrt(Math.pow(mouseY-currentY, 2) + Math.pow(mouseX-currentX, 2)) * Math.sin(this.angle)*5;
     }
 
   isCollided() {
