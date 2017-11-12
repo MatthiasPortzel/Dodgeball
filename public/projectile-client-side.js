@@ -1,21 +1,19 @@
 class Projectile{
-  constructor(currentX, currentY, angle){
+  constructor(currentX, currentY, mouseX, mouseY){
     this.currentX = currentX;
     this.currentY = currentY;
-    this.angle = angle;
-    if (typeof this.angle === "object") {
-        this.angle = Math.atan2(this.currentY - this.angle.y, this.currentX - this.angle.x);
-    }
+    this.angle = Math.atan2(mouseY - currentY, mouseX - currentX);
   }
 
-  display() {
+
+    display() {
       ellipse(this.currentX, this.currentY, 10, 10);
-  }
+    }
 
-  update() {
-      this.currentX += Math.cos(this.angle)*5;
-      this.currentY += Math.sin(this.angle)*5;
-  }
+    update() {
+      this.currentX += (Math.sqrt(Math.pow(mouseY-currentY, 2) - Math.pow(mouseX-currentX, 2)) * Math.cos(this.angle)*5);
+      this.currentY += (Math.sqrt(Math.pow(mouseY-currentY, 2) - Math.pow(mouseX-currentX, 2)) * Math.sin(this.angle)*5;
+    }
 
   isCollided() {
       for(var i = 0; i < players.length; i++){
