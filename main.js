@@ -26,7 +26,7 @@ io.on('connection', function(socket) {
 
     for (var player of players) {
         if (player && player.id !== socket.playerID) {
-            player.socket.broadcast.emit("user joined", players[socket.playerID].username);
+            player.socket.broadcast.emit("user joined", players["Sheep"]);
         }
     }
 
@@ -36,4 +36,10 @@ io.on('connection', function(socket) {
     })
 
     console.log(socket.playerID + " connected.")
+});
+
+process.on("SIGINT", function () {
+    io.emit("closing");
+    io.close();
+    process.exit();
 });
