@@ -15,7 +15,19 @@ class Player{
   }
 
   display() {
-      rect(this.x, this.y, 20, 20);
+    var drawPlayer = function(x, y){
+fill(255, 0, 0);
+rect(x-29,y+20,27,7);
+fill(0, 235, 172);
+ellipse(x,y+26,27,27);
+fill(143, 139, 13);
+rect(x,y,20,54);
+};
+draw = function() {
+    background(255, 255, 255);
+    drawPlayer(379, mouseY);
+
+};
   }
 
   move () {
