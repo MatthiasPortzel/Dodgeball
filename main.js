@@ -56,7 +56,12 @@ io.on('connection', function(socket) {
     });
 
     socket.on('disconnect', function () {
-        socket.broadcast.emit("player left", JSON.stringify(player.toObj()))
+        socket.broadcast.emit("player left", JSON.stringify(player.toObj()));
+        if (player.team === -1) {
+            leftTeam --;
+        }else {
+            rightTeam --;
+        }
         players[player.id] = null;
         console.log(socket.playerID + " disconnected.");
     });
@@ -76,7 +81,8 @@ io.on('connection', function(socket) {
         var p = new Projectile(
             player.team === -1 ? Player.width/2 : 720 - Player.height/2,
             player.y + Player.height/2,
-            parseFloat(angle, 10))
+            parseFloat(angle, 10),
+            player.id)
         projectiles.push(p);
         player.ammoCount --;
         socket.broadcast.emit("shoot", JSON.stringify(p.toObj()));

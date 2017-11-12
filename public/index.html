@@ -114,11 +114,11 @@
         });
         socket.addEventListener("move", function (str) {
             arr = str.split("@");
-            players[parseInt(arr[0], 10)].y = arr[1];
+            players[parseInt(arr[0], 10)].y = parseInt(arr[1], 10);
         })
         socket.addEventListener("shoot", function (projectileData) {
             projectileData = JSON.parse(projectileData);
-            projectiles.push(new Projectile(projectileData.x, projectileData.y, projectileData.angle));
+            projectiles.push(new Projectile(projectileData.x, projectileData.y, projectileData.angle, projectileData.shooterId));
         });
     </script>
 </body>
