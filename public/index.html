@@ -46,6 +46,7 @@
         var socket = io();
         var players, player;
         var state = "loading";
+        var projectiles = [];
         socket.emit("username input", JSON.stringify({username:username}));
         socket.on('disconnect', (reason) => {
             state = "disconnected";
