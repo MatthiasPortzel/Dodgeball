@@ -11,6 +11,8 @@
         var username = prompt("What username do you want?");
         var socket = io();
         socket.emit("username change", JSON.stringify({username:username}));
+        socket.addEventListener("user joined", function (username) {console.log(username + " joined.")})
+        socket.addEventListener("closing", function () { socket.close(); })
     </script>
 </body>
 </html>
