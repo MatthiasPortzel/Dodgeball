@@ -8,6 +8,19 @@ class Player {
   get Position() {
     return this.position;
   }
+
+  display() {
+      rect(this.x, this.y, 20, 20);
+  }
+
+  move () {
+      if (movement.up && this.y > 0) {
+          this.y -= 2;
+      }
+      if (movement.down && this.y < height - 20) {
+          this.y += 2;
+      }
+  }
   //Username setter
   setUsername(new_username) {
       this.username = new_username;
