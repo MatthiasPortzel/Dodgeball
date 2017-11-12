@@ -30,6 +30,9 @@ class Player{
   setUsername(new_username) {
       this.username = new_username;
   }
+  setAmmoCount(ammoCount) {
+      this.ammoCount = ammoCount;
+  }
 }
 
 var movement = {
@@ -66,9 +69,12 @@ document.addEventListener('keyup', function(event){
   }
 });
 document.addEventListener('click', function(event){
-  mousePosition.x = mouseX;
-  mousePosition.y = mouseY;
-  projectiles.push(new Projectile(player.x + Player.width/2, player.y + Player.height/2, mousePosition));
+  if(player.ammoCount > 0) {
+    ammoCount--;
+    mousePosition.x = event.clientX;
+    mousePosition.y = event.clientX;
+    projectiles.push(new Projectile(player.x + Player.width/2, player.y + Player.height/2, mousePosition, player.id));
 
-  socket.emit("shoot", JSON.stringify(projectiles[projectiles.length-1].angle))
+    socket.emit("shoot", JSON.stringify(projectiles[projectiles.length-1].angle))
+  }
 });
