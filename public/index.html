@@ -5,6 +5,8 @@
     <script src="/player-client-side.js"></script>
     <script src="/projectile-client-side.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.12/p5.js"></script>
+    <script type type="text/javascript"
+   src="https://cdn.rawgit.com/snaptortoise/konami-js/8d48eb90/konami.js"></script>
     <title>Code Day Dodgeball</title>
     <style>
      * { padding: 0; margin: 0; }
@@ -19,6 +21,7 @@
 </head>
 <body>
     <script>
+        var eegg = new Konami(function() {alert('You did the thing!')});
         function windowResized() {
             resetMatrix();
             if (windowWidth/8 > windowHeight/5) {
