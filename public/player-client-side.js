@@ -66,8 +66,8 @@ document.addEventListener('keyup', function(event){
   }
 });
 document.addEventListener('click', function(event){
-  mousePosition.x = mouseX;
-  mousePosition.y = mouseY;
+  mousePosition.x = mouseX * 720/width;
+  mousePosition.y = mouseY * 450/height;
   projectiles.push(new Projectile(player.x + Player.width/2, player.y + Player.height/2, mousePosition));
 
   socket.emit("shoot", JSON.stringify(projectiles[projectiles.length-1].angle))

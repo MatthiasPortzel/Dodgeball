@@ -4,7 +4,7 @@ class Projectile{
     this.currentY = currentY;
     this.angle = angle;
     if (typeof this.angle === "object") {
-        this.angle = Math.atan2(this.currentY - this.angle.y, this.currentX - this.angle.x);
+        this.angle = Math.atan2(angle.y - currentY, angle.x - currentX);
     }
   }
 
