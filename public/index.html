@@ -22,6 +22,7 @@
 <body>
     <script>
         var eegg = new Konami(function() {text('Konami Code', 314, 314)});
+        var img;
         function windowResized() {
             resetMatrix();
             if (windowWidth/8 > windowHeight/5) {
@@ -42,8 +43,8 @@
             }
             scale(width/720);
             noCursor();
-            loadImage("testcrosshair.png", function(img){
-              image(img,mouseX,mouseY);
+            loadImage("testcrosshair.png", function(loaded_img){
+              img = loaded_img;
             });
         }
 
@@ -76,6 +77,8 @@
                     if (!p) continue;
                     p.display();
                 }
+
+                image(img, mouseX * 720/width, mouseY * 450/height);
             }else {
                 fill(0);
                 noStroke();

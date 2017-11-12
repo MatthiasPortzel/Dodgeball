@@ -18,12 +18,16 @@ class Player{
         push();
         translate(this.team === -1 ? 0 : 720, this.y + 25);
         scale(-this.team, 1);
-        fill(255, 0, 0);
-        push();
-        translate(20, 0);
-        rotate(Math.atan2(mouseY * 450/height - this.y - 25, this.team * (this.x - mouseX * 720/width + 20)));
-        rect(20, -2.5, 30, 5);
-        pop();
+
+        if (this.id === player.id) {
+            push();
+            translate(20, 0);
+            rotate(Math.atan2(mouseY * 450/height - this.y - 25, this.team * (this.x - mouseX * 720/width + 20)));
+            fill(255, 0, 0);
+            rect(20, -2.5, 30, 5);
+            pop();
+        }
+
         fill(0, 235, 172);
         ellipse(20, 0, 40, 40);
         fill(143, 139, 13);
