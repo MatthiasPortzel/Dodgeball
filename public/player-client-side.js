@@ -15,7 +15,19 @@ class Player{
   }
 
   display() {
-      rect(this.x, this.y, 20, 20);
+    var drawPlayer = function(x, y){
+fill(255, 0, 0);
+rect(x-29,y+20,27,7);
+fill(0, 235, 172);
+ellipse(x,y+26,27,27);
+fill(143, 139, 13);
+rect(x,y,20,54);
+};
+draw = function() {
+    background(255, 255, 255);
+    drawPlayer(379, mouseY);
+
+};
   }
 
   move () {
@@ -69,11 +81,17 @@ document.addEventListener('keyup', function(event){
   }
 });
 document.addEventListener('click', function(event){
+<<<<<<< HEAD
   if(player.ammoCount > 0) {
     ammoCount--;
     mousePosition.x = event.clientX;
     mousePosition.y = event.clientX;
     projectiles.push(new Projectile(player.x + Player.width/2, player.y + Player.height/2, mousePosition, player.id));
+=======
+  mousePosition.x = mouseX * 720/width;
+  mousePosition.y = mouseY * 450/height;
+  projectiles.push(new Projectile(player.x + Player.width/2, player.y + Player.height/2, mousePosition));
+>>>>>>> a50ea828dbe45526e77861bafb5f7ff1eebb30b8
 
     socket.emit("shoot", JSON.stringify(projectiles[projectiles.length-1].angle))
   }

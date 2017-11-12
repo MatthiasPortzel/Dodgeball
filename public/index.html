@@ -41,6 +41,10 @@
                 createCanvas(windowWidth, 5*windowWidth/8);
             }
             scale(width/720);
+            nocursor();
+            loadImage("testcrosshair.png", function(img){
+              image(img,mouseX,mouseY);
+            });
         }
 
         function draw(){ //Put all the drawing stuff in here to avoid size conflicts.
