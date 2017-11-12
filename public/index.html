@@ -20,18 +20,36 @@
 <body>
     <script>
         function windowResized() {
-            resizeCanvas(windowWidth, windowHeight);
+            resetMatrix();
+            if (windowWidth/8 > windowHeight/5) {
+                resizeCanvas(8*windowHeight/5, windowHeight);
+            }else {
+                resizeCanvas(windowWidth, 5*windowWidth/8);
+            }
+            scale(width/720, height/ 450);
         }
 
         function setup() {
-            createCanvas(windowWidth, windowHeight);
+            //450 by 720 of pixel space, 5 to 8
+            resetMatrix();
+            if (windowWidth/8 > windowHeight/5) {
+                createCanvas(8*windowHeight/5, windowHeight);
+            }else {
+                createCanvas(windowWidth, 5*windowWidth/8);
+            }
+            scale(width/720);
         }
 
         function draw(){ //Put all the drawing stuff in here to avoid size conflicts.
-            background(255);
+            scale(width/720);
+            fill(255);
+            stroke(0);
+            rect(0, 0, 719, 449);
             if (state === "loading") {
                 text("Loading" + ".".repeat(Math.floor(Math.random()*3)), windowWidth/2, windowHeight/2);
             }else if (state === "game") {
+                fill(0);
+                noStroke();
                 //Player updating
                 var lastPos = player.y;
                 player.move();
@@ -48,7 +66,9 @@
                     p.display();
                 }
             }else {
-                text("Disconnected, please reload.");
+                fill(0);
+                noStroke();
+                text("Disconnected, please reload.", 720/2, 450/2);
             }
         }
         var username = prompt("What username do you want?"); //Maybe move the username stuff into a function later?
@@ -81,6 +101,10 @@
             arr = str.split("@");
             players[parseInt(arr[0], 10)].y = arr[1];
         })
+        socket.addEventListener("shoot", function (projectileData) {
+            projectileData = JSON.parse(projectileData);
+            projectiles.push(new Projectile(projectileData.x, projectileData.y, projectileData.angle));
+        });
     </script>
 </body>
 </html>
