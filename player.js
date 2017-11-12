@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Player {
   var movement = {
     left: false,
@@ -23,4 +24,22 @@ document.addEventListener('keyup', function(event) {
       break;
   }
 });
+=======
+var players = [];
+
+class Player {
+    constructor(id) {
+        this.id = id;
+    }
+
+    //Username setter
+    setUsername(new_username) {
+        this.username = new_username;
+    }
+
+}
+
+module.exports = {
+    Player: Player,
+>>>>>>> 08dd1a9e6f81ba722ae1fd3188b092f2658456fd
 }
