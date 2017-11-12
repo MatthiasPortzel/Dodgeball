@@ -1,6 +1,6 @@
 class Player{
   static get height() {
-      return 50;
+      return 20;
   }
   static get width() {
       return 20;
@@ -12,24 +12,24 @@ class Player{
       this.team = playerData.team;
       this.x = this.team === -1 ? 0 : 720-20;
       this.y = playerData.y;
+      this.ammoCount = 3;
   }
 
   display() {
-        push();
-        translate(this.team === -1 ? 0 : 720, this.y + 25);
-        scale(-this.team, 1);
-        fill(255, 0, 0);
-        push();
-        translate(20, 0);
-        rotate(Math.atan2(mouseY * 450/height - this.y - 25, this.team * (this.x - mouseX * 720/width + 20)));
-        rect(20, -2.5, 30, 5);
-        pop();
-        fill(0, 235, 172);
-        ellipse(20, 0, 40, 40);
-        fill(143, 139, 13);
-        rect(0, -25, 20, 50);
-        pop();
-  };
+    var drawPlayer = function(x, y){
+fill(255, 0, 0);
+rect(x-29,y+20,27,7);
+fill(0, 235, 172);
+ellipse(x,y+26,27,27);
+fill(143, 139, 13);
+rect(x,y,20,54);
+};
+draw = function() {
+    background(255, 255, 255);
+    drawPlayer(379, mouseY);
+
+};
+  }
 
   move () {
       if (movement.up && this.y > 0) {
@@ -79,9 +79,12 @@ document.addEventListener('keyup', function(event){
   }
 });
 document.addEventListener('click', function(event){
-  mousePosition.x = mouseX * 720/width;
-  mousePosition.y = mouseY * 450/height;
-  projectiles.push(new Projectile(player.x + 20, player.y + Player.height/2, mousePosition));
+  if(player.ammoCount > 0) {
+    ammoCount--;
+    mousePosition.x = mouseX * 720/width;
+    mousePosition.y = mouseY * 450/height;
+    projectiles.push(new Projectile(player.x + 20, player.y + Player.height/2, mousePosition, player.id));
 
-  socket.emit("shoot", JSON.stringify(projectiles[projectiles.length-1].angle))
+    socket.emit("shoot", JSON.stringify(projectiles[projectiles.length-1].angle))
+  } else alert("You have no more ammo left.");
 });

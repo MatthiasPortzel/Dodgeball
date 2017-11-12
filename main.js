@@ -72,11 +72,13 @@ io.on('connection', function(socket) {
     });
 
     socket.on("shoot", function (angle) {
+        if (player.ammoCount === 0) return;
         var p = new Projectile(
             player.team === -1 ? Player.width/2 : 720 - Player.height/2,
             player.y + Player.height/2,
             parseFloat(angle, 10))
         projectiles.push(p);
+        player.ammoCount --;
         socket.broadcast.emit("shoot", JSON.stringify(p.toObj()));
     });
 

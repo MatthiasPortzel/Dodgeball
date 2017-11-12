@@ -21,7 +21,8 @@
 </head>
 <body>
     <script>
-        var eegg = new Konami(function() {alert("You found my hidden easter egg :D")});
+        var eegg = new Konami(function() {text('Konami Code', 314, 314)});
+        var img;
         function windowResized() {
             resetMatrix();
             if (windowWidth/8 > windowHeight/5) {
@@ -30,6 +31,10 @@
                 resizeCanvas(windowWidth, 5*windowWidth/8);
             }
             scale(width/720, height/ 450);
+        }
+
+        function preload() {
+          img = loadImage("testcrosshair.png");
         }
 
         function setup() {
@@ -42,9 +47,6 @@
             }
             scale(width/720);
             noCursor();
-            loadImage("testcrosshair.png", function(img){
-              image(img,mouseX,mouseY);
-            });
         }
 
         function draw(){ //Put all the drawing stuff in here to avoid size conflicts.
@@ -76,6 +78,8 @@
                     if (!p) continue;
                     p.display();
                 }
+
+                image(img, mouseX * 720/width, mouseY * 450/height);
             }else {
                 fill(0);
                 noStroke();

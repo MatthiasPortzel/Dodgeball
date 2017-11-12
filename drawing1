@@ -8,7 +8,7 @@ rect(x,y,20,54);
 };
 draw = function() {
     background(255, 255, 255);
-    
+
 
 };
 
@@ -23,7 +23,7 @@ draw= function() {
     ellipse(380-jump,mouseY+24,10,10);
     if(keyIsPressed&&keyCode===0){
         jump+=20;
-    
+
     }
    if(jump>360){jump-=360;}
 };
