@@ -33,6 +33,10 @@
             scale(width/720, height/ 450);
         }
 
+        function preload() {
+          img = loadImage("testcrosshair.png");
+        }
+
         function setup() {
             //450 by 720 of pixel space, 5 to 8
             resetMatrix();
@@ -43,9 +47,6 @@
             }
             scale(width/720);
             noCursor();
-            loadImage("testcrosshair.png", function(loaded_img){
-              img = loaded_img;
-            });
         }
 
         function draw(){ //Put all the drawing stuff in here to avoid size conflicts.
