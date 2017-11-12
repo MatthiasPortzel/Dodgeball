@@ -1,25 +1,9 @@
-class Player {
+class Player{
   constructor(playerData) {
       this.id = playerData.id;
       this.username = playerData.username;
       this.x = playerData.x;
       this.y = playerData.y;
-  }
-  get Position() {
-    return this.position;
-  }
-
-  display() {
-      rect(this.x, this.y, 20, 20);
-  }
-
-  move () {
-      if (movement.up && this.y > 0) {
-          this.y -= 2;
-      }
-      if (movement.down && this.y < height - 20) {
-          this.y += 2;
-      }
   }
   //Username setter
   setUsername(new_username) {
@@ -41,7 +25,7 @@ document.addEventListener('keydown', function(event){
     case 38: // up arrow
       movement.up = true;
       break;
-    case 40: // right arrow
+    case 40: // down arrow
       movement.down = true;
       break;
   }
@@ -62,5 +46,5 @@ document.addEventListener('click', function(event){
 });
 
 function shoot(){
-  var shot = new Projectile(player.x, player.y, mousePosition.x, mousePosition.y);
+  projectiles.push(new Projectile(player.x, player.y, mousePosition.x, mousePosition.y));
 }
