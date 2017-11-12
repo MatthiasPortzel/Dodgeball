@@ -61,6 +61,9 @@ document.addEventListener('click', function(event){
 });
 
 function shoot(){
-  projectiles.push(new Projectile(player.x, player.y, mousePosition.x, mousePosition.y));
-  alert(projectile[0].angle);
+  var counter = 3;
+  if(counter > 0){
+    projectiles.push(new Projectile(player.x, player.y, mousePosition.x, mousePosition.y));
+    counter--;
+  }
 }
