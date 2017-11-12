@@ -19,16 +19,15 @@ var players = [];
 io.on('connection', function(socket) {
     socket.playerID = players.length;
     players.push(new Player(players.length, socket));
+    var player = players[socket.playerID];
 
     socket.on("username change", function (data) {
-        players[socket.playerID].setUsername(JSON.parse(data).username, socket);
-    })
+        data = JSON.parse(data);
+        if (player.username !== undefined) return;
 
-    for (var player of players) {
-        if (player && player.id !== socket.playerID) {
-            player.socket.broadcast.emit("user joined", players["Sheep"]);
-        }
-    }
+        player.setUsername(data.username, socket);
+        socket.broadcast.emit("user joined", player.toJSON());
+    })
 
     socket.on('disconnect', function () {
         players[socket.playerID] = null;

@@ -8,6 +8,13 @@ class Player {
     setUsername(new_username) {
         this.username = new_username;
     }
+
+    toJSON() {
+        return JSON.stringify({
+            id: this.id,
+            username: this.username,
+        });
+    }
 }
 
 module.exports = {
