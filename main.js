@@ -1,13 +1,14 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 const Player = require('./player.js').Player;
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html');
-});
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 http.listen(8080, function(){
     console.log('listening on *:8080');
