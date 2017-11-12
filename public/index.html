@@ -35,8 +35,18 @@
             background(255);
             if (state === "loading") {
                 text("Loading" + ".".repeat(Math.floor(Math.random()*3)), 314, 314);
-            }else {
+            }else if (state === "game") {
+                if (movement.up) {
+                    player.y -= 2;
+                }
+                if (movement.down) {
+                    player.y += 2;
+                }
+                if (movement.up || movement.down) {
+                    socket.emit("move", player.y.toString());
+                }
                 for (var p of players) {
+                    if (!p) continue;
                     rect(p.x, p.y, 20, 20);
                 }
             }
@@ -60,12 +70,16 @@
         socket.addEventListener("init", function (data) {
             data = JSON.parse(data);
             players = data.players.map(p => (p ? new Player(p) : null));
-            player = new Player(data.player);
+            player = players[data.player.id];
             state = "game";
         });
         socket.addEventListener("player left", function (data) {
             players[JSON.parse(data).id] = null;
         });
+        socket.addEventListener("move", function (str) {
+            arr = str.split("@");
+            players[parseInt(arr[0], 10)].y = arr[1];
+        })
     </script>
 </body>
 </html>

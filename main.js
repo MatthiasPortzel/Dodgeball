@@ -34,13 +34,23 @@ io.on('connection', function(socket) {
             players: players.map(p => p ? p.toObj() : null),
             player: player.toObj()
         }));
-    })
+    });
 
     socket.on('disconnect', function () {
         socket.broadcast.emit("player left", JSON.stringify(player.toObj()))
         players[player.id] = null;
         console.log(socket.playerID + " disconnected.");
-    })
+    });
+
+    socket.on("move", function (y) {
+        y = parseInt(y, 10);
+        if (y && Math.abs(player.y - y) === 2) {
+            player.y = y;
+            socket.broadcast.emit("move", socket.playerID + "@" + y);
+        }else {
+            console.log(player.y, y);
+        }
+    });
 
     console.log(socket.playerID + " connected.")
 });
