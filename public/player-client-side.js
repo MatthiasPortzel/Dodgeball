@@ -26,7 +26,7 @@ rect(x,y,20,54);
 };
 draw = function() {
     background(255, 255, 255);
-    drawPlayer(379, mouseY);
+    drawPlayer(379, player.y);
 
 };
   }
@@ -86,5 +86,5 @@ document.addEventListener('click', function(event){
     projectiles.push(new Projectile(player.x + 20, player.y + Player.height/2, mousePosition, player.id));
 
     socket.emit("shoot", JSON.stringify(projectiles[projectiles.length-1].angle))
-  } else alert("You have no more ammo left.");
+  }
 });

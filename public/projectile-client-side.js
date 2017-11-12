@@ -43,3 +43,5 @@ function isCollided() {
 function delayIsCollided() {
   window.setTimeout(isCollided, 1000);
 }
+
+delayIsCollided();
