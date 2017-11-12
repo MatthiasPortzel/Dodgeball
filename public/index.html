@@ -32,6 +32,8 @@
             if (state === "loading") {
                 text("Loading" + ".".repeat(Math.floor(Math.random()*3)), 314, 314);
             }else if (state === "game") {
+
+                //Player updating
                 var lastPos = player.y;
                 player.move();
                 for (var p of players) {
@@ -41,6 +43,13 @@
                 if (lastPos !== player.y) {
                     socket.emit("move", player.y.toString());
                 }
+
+                for (var p of projectiles) {
+                    p.update();
+                    p.display();
+                }
+            }else {
+                text("Disconnected, please reload.");
             }
         }
         var username = prompt("What username do you want?"); //Maybe move the username stuff into a function later?
