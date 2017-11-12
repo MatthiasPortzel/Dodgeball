@@ -21,7 +21,7 @@
 </head>
 <body>
     <script>
-        var eegg = new Konami(function() {alert('You did the thing!')});
+        var eegg = new Konami(function() {text('Konami Code', 314, 314)});
         function windowResized() {
             resetMatrix();
             if (windowWidth/8 > windowHeight/5) {
@@ -41,7 +41,7 @@
                 createCanvas(windowWidth, 5*windowWidth/8);
             }
             scale(width/720);
-            nocursor();
+            noCursor();
             loadImage("testcrosshair.png", function(img){
               image(img,mouseX,mouseY);
             });
