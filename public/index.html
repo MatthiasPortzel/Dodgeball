@@ -4,9 +4,16 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/player-client-side.js"></script>
     <title>Code Day Dodgeball</title>
+    <style>
+    #topTitle{
+      font-family: Verdana;
+    }
+     * { padding: 0; margin: 0; }
+     canvas { background: #d9d9d9; display: block; margin: 0 auto; }
+   </style>
 </head>
 <body>
-    <center>Code Day - DodgeBall</center>
+    <center id="topTitle">Code Day - DodgeBall</center>
     <script>
         var canvas = document.getElementById("defaultCanvas");
         var ctx = canvas.getContext("2d");
@@ -16,7 +23,7 @@
           canvas.height = window.innerHeight;
           draw();
         }
-        resizeCanvas();//Test text please remove.
+        resizeCanvas();
         function draw(){ //Put all the drawing stuff in here to avoid size conflicts.
 
         }
