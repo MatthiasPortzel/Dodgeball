@@ -1,8 +1,8 @@
 class Player {
   var movement = {
-  left: false,
-  right: false
-}
+    left: false,
+    right: false
+  }
 document.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
     case 37: // left arrow
