@@ -81,15 +81,9 @@ document.addEventListener('keyup', function(event){
 document.addEventListener('click', function(event){
   if(player.ammoCount > 0) {
     ammoCount--;
-<<<<<<< HEAD
-    mousePosition.x = event.clientX;
-    mousePosition.y = event.clientX;
-    projectiles.push(new Projectile(player.x + Player.width/2, player.y + Player.height/2, mousePosition, player.id));
-=======
     mousePosition.x = mouseX * 720/width;
     mousePosition.y = mouseY * 450/height;
     projectiles.push(new Projectile(player.x + 20, player.y + Player.height/2, mousePosition, player.id));
->>>>>>> f683d264fd9209abb272e531af2af57228d835f7
 
     socket.emit("shoot", JSON.stringify(projectiles[projectiles.length-1].angle))
   }
