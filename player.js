@@ -10,6 +10,7 @@ class Player {
         this.id = id;
         this.team = team;
         this.y = 314;
+        this.ammoCount = 3;
     }
 
     //Username setter
@@ -23,6 +24,7 @@ class Player {
             username: this.username,
             team: this.team,
             y: this.y,
+            ammoCount: this.ammoCount,
         };
     }
 }
