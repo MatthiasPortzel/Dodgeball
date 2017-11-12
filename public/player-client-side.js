@@ -2,8 +2,22 @@ class Player{
   constructor(playerData) {
       this.id = playerData.id;
       this.username = playerData.username;
-      this.x = playerData.x;
+      this.team = playerData.team;
+      this.x = this.team === -1 ? 0 : windowWidth-20;
       this.y = playerData.y;
+  }
+
+  display() {
+      rect(this.x, this.y, 20, 20);
+  }
+
+  move () {
+      if (movement.up && this.y > 0) {
+          this.y -= 2;
+      }
+      if (movement.down && this.y < height - 20) {
+          this.y += 2;
+      }
   }
   //Username setter
   setUsername(new_username) {

@@ -15,10 +15,26 @@ http.listen(8080, function(){
 });
 
 var players = [];
+var leftTeam = 0;
+var rightTeam = 0;
 
 io.on('connection', function(socket) {
     socket.playerID = players.length;
-    players.push(new Player(players.length, socket));
+
+    var team;
+    if (leftTeam === rightTeam) {
+        team = [-1, 1][Math.round(Math.random())];
+    }else {
+        team = leftTeam < rightTeam ? -1 : 1;
+    }
+
+    if (team === -1) {
+        leftTeam ++;
+    }else {
+        rightTeam ++;
+    }
+
+    players.push(new Player(players.length, team));
     var player = players[socket.playerID];
 
     socket.on("username input", function (data) {

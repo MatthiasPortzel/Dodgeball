@@ -1,7 +1,7 @@
 class Player {
-    constructor(id) {
+    constructor(id, team) {
         this.id = id;
-        this.x = 314;
+        this.team = team;
         this.y = 314;
     }
 
@@ -14,7 +14,7 @@ class Player {
         return {
             id: this.id,
             username: this.username,
-            x: this.x,
+            team: this.team,
             y: this.y,
         };
     }
