@@ -1,9 +1,16 @@
 class Player{
+  static get height() {
+      return 20;
+  }
+  static get width() {
+      return 20;
+  }
+
   constructor(playerData) {
       this.id = playerData.id;
       this.username = playerData.username;
       this.team = playerData.team;
-      this.x = this.team === -1 ? 0 : windowWidth-20;
+      this.x = this.team === -1 ? 0 : 720-20;
       this.y = playerData.y;
   }
 
@@ -15,7 +22,7 @@ class Player{
       if (movement.up && this.y > 0) {
           this.y -= 2;
       }
-      if (movement.down && this.y < height - 20) {
+      if (movement.down && this.y < 450 - 20) {
           this.y += 2;
       }
   }
@@ -36,11 +43,11 @@ var mousePosition = {
 
 document.addEventListener('keydown', function(event){
   switch(event.keyCode){
-    case 119: //W
+    case 87: //W
     case 38: // up arrow
       movement.up = true;
       break;
-    case 115: //S
+    case 83: //S
     case 40: // down arrow
       movement.down = true;
       break;
@@ -48,26 +55,20 @@ document.addEventListener('keydown', function(event){
 });
 document.addEventListener('keyup', function(event){
   switch(event.keyCode){
-    case 119: //W
+    case 87: //W
     case 38: // up arrow
       movement.up = false;
       break;
-    case 115: //S
+    case 83: //S
     case 40: // down arrow
       movement.down = false;
       break;
   }
 });
 document.addEventListener('click', function(event){
-  mousePosition.x = event.x;
-  mousePosition.y = event.y;
-  shoot();
-});
+  mousePosition.x = mouseX;
+  mousePosition.y = mouseY;
+  projectiles.push(new Projectile(player.x + Player.width/2, player.y + Player.height/2, mousePosition));
 
-function shoot(){
-  var counter = 3;
-  if(counter > 0){
-    projectiles.push(new Projectile(player.x, player.y, mousePosition.x, mousePosition.y));
-    counter--;
-  }
-}
+  socket.emit("shoot", JSON.stringify(projectiles[projectiles.length-1].angle))
+});

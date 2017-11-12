@@ -5,6 +5,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 const Player = require('./player.js').Player;
+const Projectile = require('./projectile.js').Projectile;
 
 const path = require('path');
 
@@ -15,6 +16,7 @@ http.listen(8080, function(){
 });
 
 var players = [];
+var projectiles = [];
 var leftTeam = 0;
 var rightTeam = 0;
 
@@ -48,6 +50,7 @@ io.on('connection', function(socket) {
 
         socket.emit("init", JSON.stringify({
             players: players.map(p => p ? p.toObj() : null),
+            projectiles: projectiles.map(p => p.toObj()),
             player: player.toObj()
         }));
     });
@@ -60,7 +63,7 @@ io.on('connection', function(socket) {
 
     socket.on("move", function (y) {
         y = parseInt(y, 10);
-        if (y && Math.abs(player.y - y) === 2) {
+        if (y && Math.abs(player.y - y) === 2 && y > 0 && y < 450 - 20) {
             player.y = y;
             socket.broadcast.emit("move", socket.playerID + "@" + y);
         }else {
@@ -68,7 +71,20 @@ io.on('connection', function(socket) {
         }
     });
 
+    socket.on("shoot", function (angle) {
+        var p = new Projectile(
+            player.team === -1 ? Player.width/2 : 720 - Player.height/2,
+            player.y + Player.height/2,
+            parseFloat(angle, 10))
+        projectiles.push(p);
+        socket.broadcast.emit("shoot", JSON.stringify(p.toObj()));
+    });
+
+    setInterval(function () {
+        for (var p of projectiles) {
+            p.update();
+        }
+    }, 1000);
+
     console.log(socket.playerID + " connected.")
 });
-
-var projectiles = [];

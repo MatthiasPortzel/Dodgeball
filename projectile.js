@@ -3,18 +3,19 @@ class Projectile{
     this.currentX = currentX;
     this.currentY = currentY;
     this.angle = angle;
-    if (typeof this.angle === "object") {
-        this.angle = Math.atan2(this.currentY - this.angle.y, this.currentX - this.angle.x);
-    }
-  }
-
-  display() {
-      ellipse(this.currentX, this.currentY, 10, 10);
   }
 
   update() {
       this.currentX += Math.cos(this.angle)*5;
       this.currentY += Math.sin(this.angle)*5;
+  }
+
+  toObj() {
+      return {
+          x: this.currentX,
+          y: this.currentY,
+          angle: this.angle,
+      }
   }
 
   isCollided() {
@@ -26,4 +27,8 @@ class Projectile{
       }
       return false;
   }
+}
+
+module.exports = {
+    Projectile: Projectile,
 }

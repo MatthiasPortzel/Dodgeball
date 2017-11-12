@@ -1,4 +1,11 @@
 class Player {
+    static get height() {
+        return 20;
+    }
+    static get width() {
+        return 20;
+    }
+
     constructor(id, team) {
         this.id = id;
         this.team = team;
