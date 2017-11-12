@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-class player{
-  constructor(id, x, y) {
-      this.id = id;
-      this.x = x;
-      this.y = y;
-=======
-class Player{
+class Player
   constructor(playerData) {
       this.id = playerData.id;
       this.username = playerData.username;
->>>>>>> 63f5326a2e8e0192c08732dad83562eddf529cd7
+      this.x = playerData.x;
+      this.y = playerData.y;
   }
   get Position() {
     return this.position;

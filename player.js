@@ -1,7 +1,8 @@
 class Player {
-    constructor(id, socket) {
+    constructor(id) {
         this.id = id;
-        this.socket = socket;
+        this.x = 314;
+        this.y = 314;
     }
 
     //Username setter
@@ -13,6 +14,8 @@ class Player {
         return {
             id: this.id,
             username: this.username,
+            x: this.x;
+            y: this.y;
         };
     }
 }
