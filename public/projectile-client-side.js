@@ -9,7 +9,12 @@ class Projectile{
       ellipse(this.currentX, this.currentY, 10, 10);
   }
 
-  isCollided(){
+  update() {
+      this.currentX += Math.cos(this.angle)*2;
+      this.currentY += Math.sin(this.angle)*2;
+  }
+
+  isCollided() {
       for(var i = 0; i < players.length; i++){
           if(this.currentX == 20 || this.currentX == windowWidth - 2*20){ //replace 20 with the width of the player
               if(this.currentY == players[i].y)
