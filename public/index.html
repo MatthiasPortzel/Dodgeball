@@ -21,8 +21,7 @@
 </head>
 <body>
     <script>
-        var eegg = new Konami(function() {text('Konami Code', 314, 314)});
-        var img;
+        var eegg = new Konami(function() {alert('You found my hidden easter egg')});
         function windowResized() {
             resetMatrix();
             if (windowWidth/8 > windowHeight/5) {
@@ -55,7 +54,7 @@
             stroke(0);
             rect(0, 0, 719, 449);
             if (state === "loading") {
-                text("Loading" + ".".repeat(Math.floor(Math.random()*3)), windowWidth/2, windowHeight/2);
+                text("Loading" + ".".repeat(Math.floor(Math.random()*3)), windowWidth/2, windowHeight/2); //Probably move to fit canvas.
             }else if (state === "game") {
                 fill(0);
                 noStroke();
