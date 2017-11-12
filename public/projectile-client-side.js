@@ -14,8 +14,8 @@ class Projectile{
     }
 
     update() {
-        this.currentX += Math.cos(this.angle)*5;
-        this.currentY += Math.sin(this.angle)*5;
+        this.currentX += Math.cos(this.angle)*10;
+        this.currentY += Math.sin(this.angle)*10;
     }
 
   isCollided() {
