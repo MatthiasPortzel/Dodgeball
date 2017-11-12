@@ -36,9 +36,11 @@ var mousePosition = {
 
 document.addEventListener('keydown', function(event){
   switch(event.keyCode){
+    case 87: //W
     case 38: // up arrow
       movement.up = true;
       break;
+    case 83: //S
     case 40: // down arrow
       movement.down = true;
       break;
@@ -46,9 +48,11 @@ document.addEventListener('keydown', function(event){
 });
 document.addEventListener('keyup', function(event){
   switch(event.keyCode){
+    case 87: //W
     case 38: // up arrow
       movement.up = false;
       break;
+    case 83: //S
     case 40: // down arrow
       movement.down = false;
       break;
