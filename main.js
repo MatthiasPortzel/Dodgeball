@@ -37,7 +37,8 @@ io.on('connection', function(socket) {
     })
 
     socket.on('disconnect', function () {
-        players[socket.playerID] = null;
+        socket.broadcast.emit("player left", JSON.stringify(player.toObj()))
+        players[player.id] = null;
         console.log(socket.playerID + " disconnected.");
     })
 

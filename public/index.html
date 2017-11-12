@@ -44,6 +44,9 @@
             players = data.players.map(p => (p ? new Player(p) : null));
             player = new Player(data.player);
         });
+        socket.addEventListener("player left", function (data) {
+            players[JSON.parse(data).id] = null;
+        });
         socket.addEventListener("closing", function () { socket.close(); })
     </script>
 </body>
