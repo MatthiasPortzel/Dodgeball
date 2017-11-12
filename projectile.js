@@ -1,8 +1,9 @@
 class Projectile{
-  constructor(currentX, currentY, angle){
+  constructor(currentX, currentY, angle, shooterId){
     this.currentX = currentX;
     this.currentY = currentY;
     this.angle = angle;
+    this.shooterId = shooterId;
   }
 
   update() {
@@ -15,6 +16,7 @@ class Projectile{
           x: this.currentX,
           y: this.currentY,
           angle: this.angle,
+          shooterId: this.shooterId,
       }
   }
 

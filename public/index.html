@@ -85,7 +85,8 @@
                 text("Disconnected, please reload.", 720/2, 450/2);
             }
         }
-        var username = prompt("What username do you want?"); //Maybe move the username stuff into a function later?
+        // var username = prompt("What username do you want?"); //Maybe move the username stuff into a function later?
+        var username = "";
         var socket = io();
         var players, player;
         var state = "loading";
@@ -101,7 +102,7 @@
                 players.push(null);
             }
             players[newPlayer.id] = new Player(newPlayer);
-        })
+        });
         socket.addEventListener("init", function (data) {
             data = JSON.parse(data);
             players = data.players.map(p => (p ? new Player(p) : null));
@@ -113,11 +114,11 @@
         });
         socket.addEventListener("move", function (str) {
             arr = str.split("@");
-            players[parseInt(arr[0], 10)].y = arr[1];
-        })
+            players[parseInt(arr[0], 10)].y = parseInt(arr[1], 10);
+        });
         socket.addEventListener("shoot", function (projectileData) {
             projectileData = JSON.parse(projectileData);
-            projectiles.push(new Projectile(projectileData.x, projectileData.y, projectileData.angle));
+            projectiles.push(new Projectile(projectileData.x, projectileData.y, projectileData.angle, projectileData.shooterId));
         });
     </script>
 </body>
