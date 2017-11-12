@@ -2,19 +2,11 @@
 <html>
 <head>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/public/player-client-side.js" ></script>
+    <script src="/player-client-side.js"></script>
     <title>Code Day Dodgeball</title>
-    <style>
-    #topTitle{
-      font-family: Verdana;
-    }
-     * { padding: 0; margin: 0; }
-     canvas { background: #d9d9d9; display: block; margin: 0 auto; }
-   </style>
 </head>
 <body>
-    <center id = "topTitle">Code Day - DodgeBall</center>
-    <canvas id="defaultCanvas"></canvas>
+    <center>Code Day - DodgeBall</center>
     <script>
         var canvas = document.getElementById("defaultCanvas");
         var ctx = canvas.getContext("2d");
@@ -31,6 +23,8 @@
         var username = prompt("What username do you want?"); //Maybe move the username stuff into a function later?
         var socket = io();
         socket.emit("username change", JSON.stringify({username:username}));
+        socket.addEventListener("user joined", function (username) {console.log(username + " joined.")})
+        socket.addEventListener("closing", function () { socket.close(); })
     </script>
 </body>
 </html>
