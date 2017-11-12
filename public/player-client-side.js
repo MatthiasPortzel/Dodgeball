@@ -1,8 +1,12 @@
 class player{
-  constructor(id) {
+  constructor(id, x, y) {
       this.id = id;
+      this.x = x;
+      this.y = y;
   }
-
+  get Position() {
+    return this.position;
+  },
   //Username setter
   setUsername(new_username) {
       this.username = new_username;
@@ -13,17 +17,18 @@ var movement = {
   up: false,
   down: false
 }
-var shoot = false;
+var mousePosition = {
+  x: 0,
+  y: 0
+}
 
 document.addEventListener('keydown', function(event){
   switch(event.keyCode){
     case 38: // up arrow
       movement.up = true;
-      alert('up');
       break;
     case 40: // right arrow
       movement.down = true;
-      alert('down');
       break;
   }
 });
@@ -37,22 +42,11 @@ document.addEventListener('keyup', function(event){
       break;
   }
 });
-  /*document.addEventListener('keypress', function(event){
-    switch(event.keyCode){
-      case 32: // spacebar
-        shoot = true;
-        break;
-    }
-  }
+document.addEventListener('click', function(event){
+  mousePosition.x = event.x;
+  mousePosition.y = event.y;
+});
 
-  document.addEventListener("keydown", move(keyCode));
-
-  function move(keyCode) {
-    switch(keyCode){
-      case 38:
-        movement.up = true;
-        alert('up');
-        break;
-    }
-  }
-}*/
+function shoot(){
+  var shot = new Projectile(player.x, player.y, mousePosition.x, mousePosition.y);
+}
