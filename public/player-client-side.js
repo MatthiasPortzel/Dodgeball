@@ -57,6 +57,7 @@ document.addEventListener('keyup', function(event){
 document.addEventListener('click', function(event){
   mousePosition.x = event.x;
   mousePosition.y = event.y;
+  shoot();
 });
 
 function shoot(){
