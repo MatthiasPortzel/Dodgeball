@@ -1,6 +1,6 @@
 class Player{
   static get height() {
-      return 20;
+      return 50;
   }
   static get width() {
       return 20;
@@ -15,20 +15,21 @@ class Player{
   }
 
   display() {
-    var drawPlayer = function(x, y){
-fill(255, 0, 0);
-rect(x-29,y+20,27,7);
-fill(0, 235, 172);
-ellipse(x,y+26,27,27);
-fill(143, 139, 13);
-rect(x,y,20,54);
-};
-draw = function() {
-    background(255, 255, 255);
-    drawPlayer(379, mouseY);
-
-};
-  }
+        push();
+        translate(this.team === -1 ? 0 : 720, this.y + 25);
+        scale(-this.team, 1);
+        fill(255, 0, 0);
+        push();
+        translate(20, 0);
+        rotate(Math.atan2(mouseY * 450/height - this.y - 25, this.team * (this.x - mouseX * 720/width + 20)));
+        rect(20, -2.5, 30, 5);
+        pop();
+        fill(0, 235, 172);
+        ellipse(20, 0, 40, 40);
+        fill(143, 139, 13);
+        rect(0, -25, 20, 50);
+        pop();
+  };
 
   move () {
       if (movement.up && this.y > 0) {
@@ -90,8 +91,12 @@ document.addEventListener('click', function(event){
 =======
   mousePosition.x = mouseX * 720/width;
   mousePosition.y = mouseY * 450/height;
+<<<<<<< HEAD
   projectiles.push(new Projectile(player.x + Player.width/2, player.y + Player.height/2, mousePosition));
 >>>>>>> a50ea828dbe45526e77861bafb5f7ff1eebb30b8
+=======
+  projectiles.push(new Projectile(player.x + 20, player.y + Player.height/2, mousePosition));
+>>>>>>> 70f9dd7e6c113ea4292d76c13b40785966808ba8
 
     socket.emit("shoot", JSON.stringify(projectiles[projectiles.length-1].angle))
   }
