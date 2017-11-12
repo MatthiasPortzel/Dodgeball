@@ -1,4 +1,4 @@
-class Player
+class Player {
   constructor(playerData) {
       this.id = playerData.id;
       this.username = playerData.username;
@@ -7,7 +7,7 @@ class Player
   }
   get Position() {
     return this.position;
-  },
+  }
   //Username setter
   setUsername(new_username) {
       this.username = new_username;

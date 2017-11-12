@@ -14,8 +14,8 @@ class Player {
         return {
             id: this.id,
             username: this.username,
-            x: this.x;
-            y: this.y;
+            x: this.x,
+            y: this.y,
         };
     }
 }
