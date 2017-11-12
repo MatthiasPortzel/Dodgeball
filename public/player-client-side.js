@@ -14,7 +14,7 @@ class player{
   }
   var shoot = false;
 
-  document.addEventListener('keydown', function(event){
+  /*document.addEventListener('keydown', function(event){
     switch(event.keyCode){
       case 38: // up arrow
         movement.up = true;
@@ -22,6 +22,7 @@ class player{
         break;
       case 40: // right arrow
         movement.down = true;
+        alert('down');
         break;
     }
   });
@@ -39,6 +40,17 @@ class player{
     switch(event.keyCode){
       case 32: // spacebar
         shoot = true;
+        break;
+    }
+  }*/
+
+  document.addEventListener("keydown", move(keyCode));
+
+  function move(keyCode) {
+    switch(keyCode){
+      case 38:
+        movement.up = true;
+        alert('up');
         break;
     }
   }
